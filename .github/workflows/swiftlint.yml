@@ -1,0 +1,21 @@
+name: SwiftLint
+
+on:
+  pull_request:
+    branches:
+      - main
+    # configure workflow to run based on what file paths are changed
+    paths:
+      - '**/*.swift'
+      
+jobs:
+  SwiftLint:
+    # Big Sur. currently transitioning to the macOS Monterey 12
+    runs-on: macos-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get pull_number
+        run: |
+          echo ${{ github.ref }}
